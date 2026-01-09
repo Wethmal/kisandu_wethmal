@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { HERO_CONTENT } from "../constants";
 import { motion } from "framer-motion";
+import Spline from "@splinetool/react-spline";
+
 
 const container = (delay) => ({
   hidden: { x: -100, opacity: 0 },
@@ -14,9 +16,8 @@ const container = (delay) => ({
 const roles = [
   "Full Stack Developer",
   "Web Designer",
-  "Frontend Developer",
   "Freelancer",
-  "Photographer",
+  "Tech Enthusiast",
 ];
 
 function Hero() {
@@ -87,17 +88,13 @@ function Hero() {
 
         {/* Image */}
         <div className="w-full lg:w-1/2 p-6">
-          <div className="flex justify-center">
-            <motion.img
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-              src="https://images.unsplash.com/photo-1603575448878-868a20723f5d"
-              alt="Developer illustration"
-              className="w-72 rounded-2xl shadow-lg shadow-black/50"
-            />
+          <div className="flex justify-center ">
+            <Spline
+        scene="https://prod.spline.design/tN5NOVbbJZYGfw-m/scene.splinecode" 
+      />
           </div>
         </div>
+        
       </div>
     </section>
   );

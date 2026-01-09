@@ -1,10 +1,13 @@
 import { div, main } from 'motion/react-client'
 import './App.css'
 
+
 import { Tech } from './components/Tech'
 import { Projects } from './components/Projects'
 import { Contact } from './components/Contact'
 import Hero from './components/Hero'
+import Subhero from './components/subhero'
+import My from './components/my'
 
 import Navbar from './components/Navbar'
 
@@ -34,8 +37,12 @@ function App() {
    </div>
 
    <div className='flex flex-col items-center '>
+    {/* <Navbar />
+    <Subhero />
+    
+    <Hero/> */}
     <Navbar />
-    <Hero/>
+    <My />
 
 
    </div>

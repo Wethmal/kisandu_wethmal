@@ -10,7 +10,7 @@ function Navbar() {
       {/* Glass Container */}
       <div className="flex w-full max-w-7xl items-center justify-between
         rounded-2xl border border-white/20
-        bg-black/60 backdrop-blur-xl
+        bg-black/10 backdrop-blur-xl
         px-6 py-4 md:px-12 text-white shadow-lg shadow-black/40">
 
         {/* Logo */}
