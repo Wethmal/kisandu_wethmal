@@ -1,68 +1,128 @@
-import React from 'react';
-import { Mail, Phone, ArrowUpRight } from 'lucide-react'; 
-import profilePic from '../assets/mypic.png';
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { motion } from "framer-motion";
+import profilePic from '../assets/mypic.png'; 
+import myResume from '../assets/mycv.pdf';
+
+const roles = ["Full Stack Developer", "Designer", "Programmer", "Software Engineer"];
 
 const My = () => {
+  // --- TYPING ANIMATION LOGIC ---
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % roles.length;
+      const fullText = roles[i];
+
+      setDisplayedText(isDeleting 
+        ? fullText.substring(0, displayedText.length - 1) 
+        : fullText.substring(0, displayedText.length + 1)
+      );
+
+      if (!isDeleting && displayedText === fullText) {
+        setTimeout(() => setIsDeleting(true), 1000); // වචනය ගැහුවට පස්සේ තත්පරයක් ඉන්නවා
+      } else if (isDeleting && displayedText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+
+      setTypingSpeed(isDeleting ? 30 : 150);
+    };
+
+    const typingTimer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(typingTimer);
+  }, [displayedText, isDeleting, loopNum, typingSpeed]);
+
+  // --- HTML CODE ---
   return (
-    // CHANGE 1: Added 'w-screen' to force full width and 'overflow-hidden' to prevent scrollbars
-    <div className="w-screen min-h-screen bg-[#0d0b16] text-white flex items-center justify-center px-6 md:px-20 relative overflow-hidden">
+    <div className="mt-15 min-h-screen w-full bg-[#0d0b16] text-white flex items-center justify-center px-6 md:px-20 relative overflow-hidden">
       
-      {/* 1. The Main Container */}
-      <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between w-full z-10">
+      {/* Container */}
+      <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 w-full z-10 py-12 md:py-0">
         
-        {/* --- LEFT SIDE: TEXT CONTENT --- */}
-        <div className="w-full md:w-1/2 space-y-6 mt-10 md:mt-0">
+        {/* --- LEFT SIDE: TEXT --- */}
+        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-6 z-20">
           
-          <h1 className="text-5xl md:text-7xl font-bold tracking-wide">
+          <h1 className=" text-4xl md:text-6xl font-bold tracking-wide leading-tight">
             MY NAME IS <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-600 opacity-30 stroke-white">
-             LILON MACWAN
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-600">
+              Kisandu Wethmal
             </span>
           </h1>
+
+          {/* --- ANIMATED TYPING TEXT ADDED HERE --- */}
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-200">
+            I am a <span className="text-pink-500">{displayedText}</span>
+            <span className="animate-pulse">|</span> {/* Blinking Cursor */}
+          </h2>
           
-          <p className="text-xl text-gray-300">
-            Web Designer based in <span className="text-white font-semibold">USA</span>
+          <p className="text-lg md:text-xl text-gray-300">
+            Software Engineering Undergraduate and aspiring Full-Stack Developer 
+            with experience in building web and mobile applications using React, 
+            Node.js, Spring Boot, PHP, Java, and Android Studio. Passionate about 
+            creating scalable solutions with strong knowledge of RESTful APIs, MySQL, 
+            SDLC, UI/UX principles, and cloud fundamentals. <br/>
+            Web Designer based in <span className="text-white font-semibold">Sri Lanka</span>
           </p>
+         
+         <div className='flex flex-row gap-4'>
+            <a href={myResume} target="_blank" rel="noopener noreferrer" download="Kisandu_CV.pdf" className="flex items-center gap-2 bg-gradient-to-r from-pink-600 to-purple-700 px-8 py-3 rounded-md font-semibold hover:scale-105 transition-transform duration-200">
+            My Resume <ArrowUpRight size={20} />
+          </a>
 
-          {/* The Button */}
-          <button className="flex items-center gap-2 bg-gradient-to-r from-pink-600 to-purple-700 px-8 py-3 rounded-sm font-semibold hover:opacity-90 transition">
-            Work with me <ArrowUpRight size={20} />
-          </button>
+          
+          
+         </div>
+          
 
-          {/* Contact Info Footer */}
-          <div className="flex flex-col md:flex-row gap-6 pt-10 text-sm text-gray-400">
-            <div className="flex items-center gap-2">
-              <Phone size={16} /> +123 45 666 7788
+          {/* Contact Info */}
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 pt-8 text-sm text-gray-400">
+            <div className="flex items-center gap-2 justify-center md:justify-start">
+              <Phone size={16} className="text-pink-500" /> +94 76 9930 678
             </div>
-            <div className="flex items-center gap-2">
-              <Mail size={16} /> shtheme@gmail.com
+            <div className="flex items-center gap-2 justify-center md:justify-start">
+              <Mail size={16} className="text-pink-500" /> kisanduofficially@gmail.com
             </div>
           </div>
         </div>
 
-        {/* --- RIGHT SIDE: IMAGE & BACKGROUND GLOW --- */}
-        <div className="mt-12 w-full md:w-1/2 flex justify-center items-center relative">
+        {/* --- RIGHT SIDE: IMAGE --- */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center relative">
           
-          {/* THE ORANGE CIRCLE */}
-          <div className="absolute w-[350px] h-[350px] md:w-[500px] md:h-[500px] bg-gradient-to-b from-yellow-600 to-orange-800 rounded-full blur-sm -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-          
-          
+         {/* THE GLOW - ANIMATED */}
 
-          {/* CHANGE 2: Updated src to point to the file in your 'public' folder */}
+<motion.div 
+  className="absolute top-1/2 left-1/2 md:left-[63%] w-[280px] h-[280px] md:w-[500px] md:h-[500px] bg-gradient-to-r from-orange-500 to-yellow-600 rounded-full blur-[60px] md:blur-[80px] -z-10"
+  
+
+  initial={{ x: "-50%", y: "-50%", opacity: 0.5 }} 
+  
+  // 2. මේකෙන් කියන්නේ දිගටම වෙන්න ඕන දේ (මැදම තියෙන්න + නිවි නිවි පත්තු වෙන්න)
+  animate={{ 
+    x: "-50%",              // සෙලවෙන්නේ නෑ, මැදම තියෙනවා
+    y: "-50%",              
+    opacity: [0.5, 1, 0.5], // <--- නිවී නිවී පත්තු වෙනවා
+    scale: [1, 1.1, 1]      // <--- පොඩ්ඩක් ලොකු පොඩි වෙනවා
+  }}
+  
+  transition={{ 
+    duration: 3,            
+    repeat: Infinity,       
+    ease: "easeInOut"       
+  }}
+/>
+          
+          {/* YOUR IMAGE */}
           <img 
-            src="profilePic" 
+            src={profilePic} 
             alt="Profile" 
-            className="relative z-20 w-full max-w-md object-cover drop-shadow-2xl"
+            className="md:left-10 relative z-10 w-[80%] md:w-full max-w-sm md:max-w-2xl object-cover drop-shadow-2xl hover:scale-[1.02] transition-transform duration-300"
           />
         </div>
-      </div>
-
-      {/* Social Sidebar (Right Edge) */}
-      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 text-gray-400">
-         <div className="w-1 h-12 bg-gray-700 mx-auto mb-2"></div>
-         <span>FB</span>
-         <span>IN</span>
-         <span>TW</span>
       </div>
 
     </div>

@@ -25,19 +25,34 @@ function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-10 text-sm">
-          <li><a href="#home" className="opacity-70 hover:opacity-100">Home</a></li>
-          <li><a href="#tech" className="opacity-70 hover:opacity-100">Tech</a></li>
-          <li><a href="#projects" className="opacity-70 hover:opacity-100">Projects</a></li>
-          <li><a href="#contact" className="opacity-70 hover:opacity-100">Contact</a></li>
+          <li><a href="#home" className="opacity-70 hover:opacity-100 transition">Home</a></li>
+          <li><a href="#tech" className="opacity-70 hover:opacity-100 transition">Tech</a></li>
+          <li><a href="#projects" className="opacity-70 hover:opacity-100 transition">Projects</a></li>
+          <li><a href="#contact" className="opacity-70 hover:opacity-100 transition">Contact</a></li>
         </ul>
 
-        {/* Desktop Icons */}
+        {/* --- DESKTOP ICONS (Fixed) --- */}
         <ul className="hidden md:flex gap-5 text-xl">
-          <li className="opacity-70 hover:opacity-100 hover:text-blue-500 cursor-pointer">
-            <BsLinkedin />
+          <li>
+            <a 
+              href="https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/" // <--- PUT LINKEDIN LINK HERE
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="opacity-70 hover:opacity-100 hover:text-blue-500 transition-all cursor-pointer"
+            >
+              <BsLinkedin />
+            </a>
           </li>
-          <li className="opacity-70 hover:opacity-100 hover:text-gray-300 cursor-pointer">
-            <BsGithub />
+          
+          <li>
+            <a 
+              href="https://github.com/Wethmal" // <--- PUT GITHUB LINK HERE
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="opacity-70 hover:opacity-100 hover:text-gray-300 transition-all cursor-pointer"
+            >
+              <BsGithub />
+            </a>
           </li>
         </ul>
 
@@ -55,15 +70,32 @@ function Navbar() {
           md:hidden shadow-lg shadow-black/50">
 
           <ul className="flex flex-col items-center gap-6 py-6 text-white">
-            <li><a onClick={() => setIsOpen(false)} href="#home">Home</a></li>
-            <li><a onClick={() => setIsOpen(false)} href="#tech">Tech</a></li>
-            <li><a onClick={() => setIsOpen(false)} href="#projects">Projects</a></li>
-            <li><a onClick={() => setIsOpen(false)} href="#contact">Contact</a></li>
+            <li><a onClick={() => setIsOpen(false)} href="#home" className="hover:text-gray-300">Home</a></li>
+            <li><a onClick={() => setIsOpen(false)} href="#tech" className="hover:text-gray-300">Tech</a></li>
+            <li><a onClick={() => setIsOpen(false)} href="#projects" className="hover:text-gray-300">Projects</a></li>
+            <li><a onClick={() => setIsOpen(false)} href="#contact" className="hover:text-gray-300">Contact</a></li>
 
+            {/* --- MOBILE ICONS (Fixed) --- */}
             <div className="flex gap-6 pt-4 text-xl">
-              <BsLinkedin />
-              <BsGithub />
+              <a 
+                href="https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/" // <--- PUT LINKEDIN LINK HERE
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-blue-500 transition-colors"
+              >
+                <BsLinkedin />
+              </a>
+
+              <a 
+                href="https://github.com/Wethmal" // <--- PUT GITHUB LINK HERE
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-gray-300 transition-colors"
+              >
+                <BsGithub />
+              </a>
             </div>
+
           </ul>
         </div>
       )}
