@@ -10,7 +10,7 @@ import { Projects } from './components/Projects'
 import { Contact } from './components/Contact'
 
 import Hero from './components/Hero'
-import Subhero from './components/subhero'
+
 import My from './components/my'
 import Navbar from './components/Navbar'
 
@@ -27,7 +27,7 @@ function App() {
       <div className='flex flex-col items-center w-full'>
         
         <Navbar />
-        <Subhero />
+  
         
         {/* Your Hero Section */}
         <My />

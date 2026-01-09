@@ -3,7 +3,7 @@ import Spline from '@splinetool/react-spline';
 import { motion } from 'framer-motion';
 import { Code2, Smartphone, Database, Wrench, Cpu, Globe, Layout, Palette, Terminal, Boxes, FileCode, Braces, Zap, Cloud, GitBranch, Figma, Package, Monitor, Server } from 'lucide-react';
 
-// ... (Your existing iconVariants remain here) ...
+// ... (Keep your iconVariants code here) ...
 const iconVariants = (duration) => ({
   initial: { y: -5 },
   animate: {
@@ -18,7 +18,7 @@ const iconVariants = (duration) => ({
 });
 
 const Tech = () => {
-  // ... (Your existing arrays remain here) ...
+  // ... (Keep your existing arrays: programmingLanguages, webMobile, etc.) ...
   const programmingLanguages = [
     { name: 'JavaScript', icon: FileCode, color: '#F7DF1E', speed: 2.5 },
     { name: 'Python', icon: Code2, color: '#3776AB', speed: 3 },
@@ -26,7 +26,7 @@ const Tech = () => {
     { name: 'Java', icon: Terminal, color: '#f89820', speed: 3.2 },
     { name: 'C++', icon: Cpu, color: '#00599C', speed: 2.7 }
   ];
-  // ... (rest of your arrays) ...
+
   const webMobile = [
     { name: 'React', icon: Boxes, color: '#61DAFB', speed: 2.6 },
     { name: 'Next.js', icon: Layout, color: '#ffffff', speed: 2.9 },
@@ -35,12 +35,14 @@ const Tech = () => {
     { name: 'HTML/CSS', icon: Globe, color: '#E34F26', speed: 2.5 },
     { name: 'Tailwind', icon: Zap, color: '#38B2AC', speed: 2.7 }
   ];
+
   const databases = [
     { name: 'MongoDB', icon: Database, color: '#47A248', speed: 3 },
     { name: 'PostgreSQL', icon: Server, color: '#336791', speed: 2.9 },
     { name: 'MySQL', icon: Database, color: '#4479A1', speed: 3.2 },
     { name: 'Firebase', icon: Cloud, color: '#FFCA28', speed: 2.6 }
   ];
+
   const toolsDesign = [
     { name: 'Git', icon: GitBranch, color: '#F05032', speed: 2.8 },
     { name: 'Docker', icon: Package, color: '#2496ED', speed: 3 },
@@ -50,22 +52,17 @@ const Tech = () => {
   ];
 
   return (
-    <div className="relative w-full pb-20 mt-20 px-4 md:px-10 overflow-hidden">
+    <div id="tech" className="relative w-full pb-20 mt-20 px-4 md:px-10 overflow-hidden min-h-screen">
       
       {/* --- SPLINE BACKGROUND --- */}
-      {/* It sits behind everything (z-0) and accepts clicks */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-50">
          <Spline 
             scene="https://prod.spline.design/JJn3wDxpkqG1neZJ/scene.splinecode" 
             className="w-full h-full object-cover"
          />
-
-         <Loader />
       </div>
-
       
       {/* --- CONTENT CONTAINER --- */}
-      {/* 1. Added 'pointer-events-none' so clicks pass through empty spaces */}
       <div className="max-w-7xl mx-auto relative z-10 pointer-events-none"> 
         
         <motion.div 
@@ -86,9 +83,23 @@ const Tech = () => {
         <TechCategory title="Tools" items={toolsDesign} />
 
       </div>
+
+      {/* --- NEW WAVE BUTTON (Bottom Right) --- */}
+      {/* 'pointer-events-auto' allows clicking it, z-50 keeps it on top */}
+      <div className="absolute bottom-4 right-6 z-50 pointer-events-auto">
+        <ul className="wave-menu">
+          {/* We generate 10 li elements for the animation bars */}
+          <li></li><li></li><li></li><li></li><li></li>
+          <li></li><li></li><li></li><li></li><li></li>
+          
+        </ul>
+      </div>
+
     </div>
   );
 };
+
+// ... (TechCategory and TechCard components remain exactly the same) ...
 
 const TechCategory = ({ title, items }) => {
   return (
@@ -115,7 +126,6 @@ const TechCard = ({ item }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.02 }}
-      // 2. Added 'pointer-events-auto' so the CARD ITSELF is clickable/hoverable
       className="group relative pointer-events-auto cursor-pointer"
     >
       <div 

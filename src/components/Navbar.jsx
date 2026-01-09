@@ -66,7 +66,7 @@ function Navbar() {
       {isOpen && (
         <div className="absolute top-20 w-[90%] max-w-sm
           rounded-2xl border border-white/10
-          bg-black/80 backdrop-blur-xl
+          bg-black/10 backdrop-blur-xl
           md:hidden shadow-lg shadow-black/50">
 
           <ul className="flex flex-col items-center gap-6 py-6 text-white">
