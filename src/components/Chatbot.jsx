@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, User, Bot, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false); // State for the pop-up bubble
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
     { text: "Hi! I'm Kisandu's Portfolio Bot. Ask me about his skills, projects, or how to contact him!", sender: 'bot' }
@@ -11,8 +12,20 @@ const Chatbot = () => {
   
   const messagesEndRef = useRef(null);
 
-  // --- THE "BRAIN" OF YOUR BOT ---
-  // You can add more questions and keywords here easily.
+  // --- 1. AUTO-SHOW GREETING BUBBLE ---
+  useEffect(() => {
+    // Wait 2 seconds, then show the "Hi!" bubble
+    const timer = setTimeout(() => {
+      setShowTooltip(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+    setShowTooltip(false); // Hide bubble when chat opens
+  };
+
   const knowledgeBase = [
     {
       keywords: ["hi", "hello", "hey", "greeting", "morning", "afternoon"],
@@ -35,16 +48,15 @@ const Chatbot = () => {
       answer: "You can email me at kisanduofficially@gmail.com or use the contact form on this website. I'm open to freelance work and internships!"
     },
     {
-      keywords: ["education", "degree", "university", "study", "college"],
-      answer: "I am currently reading for my BSc (Hons) in Software Engineering at Coventry University London. I also hold diplomas from NIBM and Esoft Metro Campus."
+        keywords: ["education", "degree", "university", "study", "college"],
+        answer: "I am currently reading for my BSc (Hons) in Software Engineering at Coventry University London. I also hold diplomas from NIBM and Esoft Metro Campus."
     },
     {
-      keywords: ["github", "linkedin", "social"],
-      answer: "You can find my code on GitHub and connect with me on LinkedIn. The links are in the footer!"
+        keywords: ["github", "linkedin", "social"],
+        answer: "You can find my code on GitHub and connect with me on LinkedIn. The links are in the footer!"
     }
   ];
 
-  // Auto-scroll to bottom
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -53,35 +65,24 @@ const Chatbot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // --- LOGIC TO FIND THE BEST ANSWER ---
   const findAnswer = (userInput) => {
     const lowerInput = userInput.toLowerCase();
-    
-    // Check if any keyword in our knowledgeBase exists in the user's input
     const match = knowledgeBase.find(item => 
       item.keywords.some(keyword => lowerInput.includes(keyword))
     );
-
-    if (match) {
-      return match.answer;
-    } else {
-      return "I'm not sure about that. Try asking about my 'projects', 'skills', or 'contact' info!";
-    }
+    return match ? match.answer : "I'm not sure about that. Try asking about my 'projects', 'skills', or 'contact' info!";
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
-
-    // 1. Add User Message
     const userMessage = { text: input, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
     
-    // 2. Get Bot Response (Simulate a small delay for realism)
     setTimeout(() => {
       const botResponseText = findAnswer(input);
       const botMessage = { text: botResponseText, sender: 'bot' };
       setMessages(prev => [...prev, botMessage]);
-    }, 600); // 0.6 second delay
+    }, 600);
 
     setInput('');
   };
@@ -92,11 +93,37 @@ const Chatbot = () => {
 
   return (
     <>
+      {/* --- POP-UP GREETING BUBBLE --- */}
+      <AnimatePresence>
+        {showTooltip && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            className="fixed bottom-24 right-6 z-50 max-w-[200px] bg-white text-black p-4 rounded-2xl rounded-br-none shadow-xl border border-neutral-200"
+          >
+            <p className="text-sm font-medium">
+              👋 Hello! I'm Kisandu's Assistant. Ask me any question!
+            </p>
+            {/* Tiny Triangle Pointer */}
+            <div className="absolute -bottom-2 right-4 w-4 h-4 bg-white transform rotate-45"></div>
+            
+            {/* Close Button for Bubble */}
+            <button 
+                onClick={() => setShowTooltip(false)}
+                className="absolute -top-2 -left-2 bg-neutral-200 rounded-full p-1 hover:bg-neutral-300"
+            >
+                <X size={12} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Floating Button */}
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleChat}
         className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg shadow-purple-500/30 text-white"
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
