@@ -1,5 +1,5 @@
 import React from 'react'
-import { div, main } from 'motion/react-client' 
+import { div, i, main } from 'motion/react-client' 
 import './App.css'
 
 
@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Education from './components/Education'
 import Services from './components/Services'
+import Chatbot from './components/Chatbot'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Projects />
         <Education />
         <Services />
+        <Chatbot />
         <Contact />
         <Footer />
       </div>
