@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from "framer-motion";
-import profilePic from '../assets/mypic.png'; 
+import profilePic from '../assets/mypic2.png'; 
 import myResume from '../assets/mycv.pdf';
 
 const roles = ["Full Stack Developer", "Designer", "Programmer", "Software Engineer"];
@@ -80,7 +80,7 @@ const My = () => {
           
 
           {/* Contact Info */}
-          <div className="flex flex-col md:flex-row gap-4 md:gap-6 pt-8 text-sm text-gray-400">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 pt-4 text-sm text-gray-400">
             <div className="flex items-center gap-2 justify-center md:justify-start">
               <Phone size={16} className="text-pink-500" /> +94 76 9930 678
             </div>
@@ -120,7 +120,7 @@ const My = () => {
           <img 
             src={profilePic} 
             alt="Profile" 
-            className="md:left-10 relative z-10 w-[80%] md:w-full max-w-sm md:max-w-2xl object-cover drop-shadow-2xl hover:scale-[1.02] transition-transform duration-300"
+            className="md:left-10 relative z-10 w-[100%] md:w-[90%] max-w-sm md:max-w-2xl object-cover drop-shadow-2xl hover:scale-[1.02] transition-transform duration-300"
           />
         </div>
       </div>

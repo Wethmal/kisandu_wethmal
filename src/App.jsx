@@ -6,13 +6,16 @@ import './App.css'
 import Tech from './components/Tech' 
 
 // Check these imports too! If they are 'export default', remove the { }
-import { Projects } from './components/Projects' 
-import { Contact } from './components/Contact'
+import Projects  from './components/Projects' 
+import Contact from './components/Contact'
 
-import Hero from './components/Hero'
 
-import My from './components/my'
+
+import My from './components/My'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Education from './components/Education'
+import Services from './components/Services'
 
 function App() {
   return (
@@ -25,6 +28,7 @@ function App() {
 
       {/* Main Content */}
       <div className='flex flex-col items-center w-full'>
+     
         
         <Navbar />
   
@@ -34,6 +38,15 @@ function App() {
         
         {/* Your Tech Section */}
         <Tech />
+
+        <Projects />
+
+        <Education />
+
+        <Services />
+        <Contact />
+
+        <Footer />
         
 
       </div>

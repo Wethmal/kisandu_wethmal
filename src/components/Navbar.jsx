@@ -28,7 +28,10 @@ function Navbar() {
           <li><a href="#home" className="opacity-70 hover:opacity-100 transition">Home</a></li>
           <li><a href="#tech" className="opacity-70 hover:opacity-100 transition">Tech</a></li>
           <li><a href="#projects" className="opacity-70 hover:opacity-100 transition">Projects</a></li>
+          <li><a href="#education" className="opacity-70 hover:opacity-100 transition">Education</a></li>
+          <li><a href="#services" className="opacity-70 hover:opacity-100 transition">Services</a></li>
           <li><a href="#contact" className="opacity-70 hover:opacity-100 transition">Contact</a></li>
+
         </ul>
 
         {/* --- DESKTOP ICONS (Fixed) --- */}
