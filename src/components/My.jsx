@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from "framer-motion";
-import profilePic from '../assets/mypic2.png'; 
+import profilePic from '../assets/MyPic.png'; 
 import myResume from '../assets/mycv.pdf';
 
 const roles = ["Full Stack Developer", "Designer", "Programmer", "Software Engineer"];
@@ -39,7 +39,7 @@ const My = () => {
 
   // --- HTML CODE ---
   return (
-    <div className="mt-15 min-h-screen w-full bg-[#0d0b16] text-white flex items-center justify-center px-6 md:px-20 relative overflow-hidden">
+    <div id='home' className="mt-15 min-h-screen w-full bg-[#0d0b16] text-white flex items-center justify-center px-6 md:px-20 relative overflow-hidden">
       
       {/* Container */}
       <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 w-full z-10 py-12 md:py-0">

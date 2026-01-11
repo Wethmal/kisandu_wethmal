@@ -1,16 +1,11 @@
 import React from 'react'
-import { div, main } from 'motion/react-client' // Keep if you use it, otherwise remove
+import { div, main } from 'motion/react-client' 
 import './App.css'
 
-// 1. FIXED IMPORT (No curly braces)
-import Tech from './components/Tech' 
 
-// Check these imports too! If they are 'export default', remove the { }
+import Tech from './components/Tech' 
 import Projects  from './components/Projects' 
 import Contact from './components/Contact'
-
-
-
 import My from './components/My'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -31,9 +26,7 @@ function App() {
      
         
         <Navbar />
-  
-        
-        {/* Your Hero Section */}
+
         <My />
         
         {/* Your Tech Section */}
