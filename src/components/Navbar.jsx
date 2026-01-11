@@ -38,7 +38,7 @@ function Navbar() {
         <ul className="hidden md:flex gap-5 text-xl">
           <li>
             <a 
-              href="https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/" // <--- PUT LINKEDIN LINK HERE
+              href="https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="opacity-70 hover:opacity-100 hover:text-blue-500 transition-all cursor-pointer"
@@ -49,7 +49,7 @@ function Navbar() {
           
           <li>
             <a 
-              href="https://github.com/Wethmal" // <--- PUT GITHUB LINK HERE
+              href="https://github.com/Wethmal" 
               target="_blank" 
               rel="noopener noreferrer"
               className="opacity-70 hover:opacity-100 hover:text-gray-300 transition-all cursor-pointer"
@@ -81,7 +81,7 @@ function Navbar() {
             {/* --- MOBILE ICONS (Fixed) --- */}
             <div className="flex gap-6 pt-4 text-xl">
               <a 
-                href="https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/" // <--- PUT LINKEDIN LINK HERE
+                href="https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-blue-500 transition-colors"
@@ -89,8 +89,8 @@ function Navbar() {
                 <BsLinkedin />
               </a>
 
-              <a 
-                href="https://github.com/Wethmal" // <--- PUT GITHUB LINK HERE
+              <a // <--- PUT GITHUB LINK H
+                href="https://github.com/Wethmal" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-gray-300 transition-colors"

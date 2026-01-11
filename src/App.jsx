@@ -23,25 +23,14 @@ function App() {
 
       {/* Main Content */}
       <div className='flex flex-col items-center w-full'>
-     
-        
         <Navbar />
-
         <My />
-        
-        {/* Your Tech Section */}
         <Tech />
-
         <Projects />
-
         <Education />
-
         <Services />
         <Contact />
-
         <Footer />
-        
-
       </div>
     </div>
   )

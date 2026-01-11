@@ -11,7 +11,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus('sending');
 
-    // REPLACE THESE WITH YOUR ACTUAL EMAILJS KEYS
+
     const SERVICE_ID = 'service_efu5a2s';
     const TEMPLATE_ID = 'template_vjrrgd4';
     const PUBLIC_KEY = 'xcKjQOByGVv8yf6Z3';

@@ -24,7 +24,7 @@ const My = () => {
       );
 
       if (!isDeleting && displayedText === fullText) {
-        setTimeout(() => setIsDeleting(true), 1000); // වචනය ගැහුවට පස්සේ තත්පරයක් ඉන්නවා
+        setTimeout(() => setIsDeleting(true), 1000); 
       } else if (isDeleting && displayedText === '') {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
@@ -101,12 +101,12 @@ const My = () => {
 
   initial={{ x: "-50%", y: "-50%", opacity: 0.5 }} 
   
-  // 2. මේකෙන් කියන්නේ දිගටම වෙන්න ඕන දේ (මැදම තියෙන්න + නිවි නිවි පත්තු වෙන්න)
+  
   animate={{ 
-    x: "-50%",              // සෙලවෙන්නේ නෑ, මැදම තියෙනවා
+    x: "-50%",           
     y: "-50%",              
-    opacity: [0.5, 1, 0.5], // <--- නිවී නිවී පත්තු වෙනවා
-    scale: [1, 1.1, 1]      // <--- පොඩ්ඩක් ලොකු පොඩි වෙනවා
+    opacity: [0.5, 1, 0.5], 
+    scale: [1, 1.1, 1]      
   }}
   
   transition={{ 
@@ -116,7 +116,7 @@ const My = () => {
   }}
 />
           
-          {/* YOUR IMAGE */}
+          
           <img 
             src={profilePic} 
             alt="Profile" 
