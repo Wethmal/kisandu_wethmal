@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from "framer-motion";
-import profilePic from '../assets/MyPic.png'; 
+import profilePic from '../assets/mypic.png'; 
 import myResume from '../assets/mycv.pdf';
 
 const roles = ["Full Stack Developer", "Designer", "Programmer", "Software Engineer"];
