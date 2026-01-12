@@ -17,7 +17,7 @@ const Education = () => {
       degree: "Advanced Diploma in Software Engineering",
       school: "National Institute of Business Management (NIBM)",
       location: "School of Computing",
-      year: "2022 - 2024",
+      year: "2023 - 2024",
       gpa: "3.64 / 4.00",
       status: "Completed",
       color: "border-blue-500"
