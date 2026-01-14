@@ -65,8 +65,8 @@ const My = () => {
             with experience in building web and mobile applications using React, 
             Node.js, Spring Boot, PHP, Java, and Android Studio. Passionate about 
             creating scalable solutions with strong knowledge of RESTful APIs, MySQL, 
-            SDLC, UI/UX principles, and cloud fundamentals. <br/>
-            Web Designer based in <span className="text-white font-semibold">Sri Lanka</span>
+            SDLC, UI/UX principles, and cloud . <br/>
+             Based in <span className="text-white font-semibold">Sri Lanka</span>
           </p>
          
          <div className='flex flex-row gap-4'>
