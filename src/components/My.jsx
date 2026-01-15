@@ -108,7 +108,7 @@ const My = () => {
     opacity: [0.5, 1, 0.5], 
     scale: [1, 1.1, 1]      
   }}
-  
+
   transition={{ 
     duration: 3,            
     repeat: Infinity,       
