@@ -8,12 +8,14 @@ import Experience from './components/Experience';
 import ContactForm from './components/ContactForm';
 import FloatingActions from './components/FloatingActions';
 import Chatbot from './components/Chatbot';
+import CharacterCursor from './components/CharacterCursor';
 
 function App() {
   return (
     <div className="relative w-full">
+      <CharacterCursor />
       <Navigation />
-      
+
       <main>
         <Hero />
         <About />
@@ -29,7 +31,7 @@ function App() {
 
       <FloatingActions />
       <Chatbot />
-      
+
       <footer className="py-8 bg-black text-white text-center text-sm tracking-widest font-bold">
         © {new Date().getFullYear()} KISANDU WETHMAL. ALL RIGHTS RESERVED.
       </footer>
