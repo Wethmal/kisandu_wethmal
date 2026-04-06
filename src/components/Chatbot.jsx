@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { MessageSquare, X, Send } from 'lucide-react';
 
 const ruleBasedResponses = {
@@ -12,6 +12,18 @@ const ruleBasedResponses = {
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (previous !== undefined && latest > previous && latest > 150 && !isOpen) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+  });
+
   const [inputText, setInputText] = useState('');
   const [messages, setMessages] = useState([
     { sender: 'bot', text: 'Hi! I am Kisandu\'s assistant. You can select an option below or type your question!' }
@@ -73,12 +85,19 @@ const Chatbot = () => {
 
   return (
     <>
-      <button 
+      <motion.button 
+        variants={{
+          visible: { opacity: 1, y: 0, scale: 1 },
+          hidden: { opacity: 0, y: 50, scale: 0.8 }
+        }}
+        animate={isVisible ? "visible" : "hidden"}
+        initial="visible"
+        transition={{ duration: 0.4, ease: "easeInOut" }}
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
       >
         <MessageSquare />
-      </button>
+      </motion.button>
 
       <AnimatePresence>
         {isOpen && (

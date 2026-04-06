@@ -1,8 +1,21 @@
+import React, { useState } from 'react';
 import { Download, Phone } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { LinkedInIcon, GithubIcon, InstagramIcon, FacebookIcon } from './SocialIcons';
 
 const FloatingActions = () => {
+  const [isVisible, setIsVisible] = useState(true);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (previous !== undefined && latest > previous && latest > 150) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+  });
+
   const socials = [
     { icon: <LinkedInIcon size={20} />, href: "https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/", label: "LinkedIn", color: "bg-[#0077B5]" },
     { icon: <GithubIcon size={20} />, href: "https://github.com/Wethmal", label: "GitHub", color: "bg-[#333]" },
@@ -10,11 +23,17 @@ const FloatingActions = () => {
     { icon: <FacebookIcon size={20} />, href: "https://www.facebook.com/share/1DzbCzXVqy/?mibextid=wwXIfr", label: "Facebook", color: "bg-[#1877F2]" },
   ];
 
+  const variants = {
+    visible: { opacity: 1, x: 0, scale: 1 },
+    hidden: { opacity: 0, x: -100, scale: 0.8 },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 1, duration: 0.8 }}
+      variants={variants}
+      animate={isVisible ? "visible" : "hidden"}
+      initial="visible"
+      transition={{ duration: 0.4, ease: "easeInOut" }}
       className="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-50 flex flex-col gap-4"
     >
       {socials.map((social, index) => (
