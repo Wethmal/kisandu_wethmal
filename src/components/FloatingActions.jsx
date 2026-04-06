@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 
 const FloatingActions = () => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1, duration: 0.8 }}
       className="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-50 flex flex-col gap-4"
     >
-      <a 
-        href="/mycv.pdf" 
+      <a
+        href="/kisandu-wethmal.pdf"
         download
         className="w-12 h-12 bg-white text-black border border-gray-200 shadow-lg flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-all transform hover:scale-110 group relative"
       >
@@ -21,9 +21,9 @@ const FloatingActions = () => {
         </span>
       </a>
 
-      <a 
-        href="https://wa.me/94769930678" 
-        target="_blank" 
+      <a
+        href="https://api.whatsapp.com/send?phone=94769930678"
+        target="_blank"
         rel="noreferrer"
         className="w-12 h-12 bg-[#25D366] text-white shadow-lg flex items-center justify-center rounded-full hover:bg-[#128C7E] transition-all transform hover:scale-110 group relative"
       >

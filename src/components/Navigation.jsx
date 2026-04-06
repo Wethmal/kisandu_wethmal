@@ -11,20 +11,17 @@ const Navigation = () => {
     >
       {/* Logo Area */}
       <div className="flex items-center gap-4">
-        <div className="w-10 h-10 md:w-12 md:h-12 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg md:text-xl tracking-tighter">
-          KW
-        </div>
-        <span className="font-outfit font-bold tracking-tight text-base md:text-lg">DESIGN BY KISANDU</span>
+        <span className="font-outfit font-bold tracking-tight text-base md:text-lg">AI Engineer .</span>
       </div>
 
       {/* Nav Links */}
       <div className="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wider text-gray-500 uppercase">
         <a href="#about" className="hover:text-black transition-colors">Profile</a>
-        <span className="text-gray-300">/</span>
+        
         <a href="#skills" className="hover:text-black transition-colors">Skills</a>
-        <span className="text-gray-300">/</span>
-        <a href="#education" className="hover:text-black transition-colors">Edu</a>
-        <span className="text-gray-300">/</span>
+        
+        <a href="#education" className="hover:text-black transition-colors">Education</a>
+        
         <a href="#projects" className="hover:text-black transition-colors">Projects</a>
       </div>
 
