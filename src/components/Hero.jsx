@@ -1,8 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
+import { LinkedInIcon, GithubIcon, InstagramIcon, FacebookIcon } from './SocialIcons';
 
 const Hero = () => {
+  const socials = [
+    { icon: <LinkedInIcon size={24} />, href: "https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/", label: "LinkedIn" },
+    { icon: <GithubIcon size={24} />, href: "https://github.com/Wethmal", label: "GitHub" },
+    { icon: <InstagramIcon size={24} />, href: "https://www.instagram.com/_kishu_x_?igsh=eWV4cWE2eTdqNWFr&utm_source=qr", label: "Instagram" },
+    { icon: <FacebookIcon size={24} />, href: "https://www.facebook.com/share/1DzbCzXVqy/?mibextid=wwXIfr", label: "Facebook" },
+  ];
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-10" id="hero">
       {/* Background Decorative Lines */}
@@ -28,15 +36,7 @@ const Hero = () => {
           WETHMAL
         </motion.h2>
       </div>
-      {/* Side Content */}
-      <motion.div 
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="absolute left-[5%] xl:left-[10%] top-1/3 flex flex-col gap-2 z-10 hidden lg:block"
-      >
-        
-      </motion.div>
+      
 
       {/* Center Image */}
       <motion.div 

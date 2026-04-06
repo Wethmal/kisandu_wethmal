@@ -9,6 +9,7 @@ import ContactForm from './components/ContactForm';
 import FloatingActions from './components/FloatingActions';
 import Chatbot from './components/Chatbot';
 import CharacterCursor from './components/CharacterCursor';
+import { GithubIcon, LinkedInIcon, InstagramIcon, FacebookIcon } from './components/SocialIcons';
 
 function App() {
   return (
@@ -32,8 +33,11 @@ function App() {
       <FloatingActions />
       <Chatbot />
 
-      <footer className="py-8 bg-black text-white text-center text-sm tracking-widest font-bold">
-        © {new Date().getFullYear()} KISANDU WETHMAL. ALL RIGHTS RESERVED.
+      <footer className="py-12 bg-black text-white flex flex-col items-center gap-8 border-t border-gray-800">
+        
+        <p className="text-xs tracking-widest font-bold opacity-50 uppercase">
+          © {new Date().getFullYear()} KISANDU WETHMAL. ALL RIGHTS RESERVED.
+        </p>
       </footer>
     </div>
   );
