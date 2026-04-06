@@ -1,190 +1,83 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send } from 'lucide-react';
+
+const ruleBasedResponses = {
+  "skills": "I am proficient in React, Node.js, Spring Boot, Python, and specialize in integrating Machine Learning models.",
+  "contact": "You can reach me at kisanduofficially@gmail.com, or use the WhatsApp button on the screen! (+94 76 993 0678)",
+  "education": "I am currently pursuing a BSc (Hons) in Software Engineering at Coventry University London.",
+  "experience": "I am working as a Software Engineer Intern at the Ministry of Digital Economy, focusing on Full-Stack & AI Development."
+};
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false); // State for the pop-up bubble
-  const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm Kisandu's Portfolio Bot. Ask me about his skills, projects, or how to contact him!", sender: 'bot' }
+    { sender: 'bot', text: 'Hi! I am Kisandu\'s assistant. What would you like to know?' }
   ]);
-  
-  const messagesEndRef = useRef(null);
 
-  // --- 1. AUTO-SHOW GREETING BUBBLE ---
-  useEffect(() => {
-    // Wait 2 seconds, then show the "Hi!" bubble
-    const timer = setTimeout(() => {
-      setShowTooltip(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const toggleChat = () => {
-    setIsOpen(!isOpen);
-    setShowTooltip(false); // Hide bubble when chat opens
-  };
-
-  const knowledgeBase = [
-    {
-      keywords: ["hi", "hello", "hey", "greeting", "morning", "afternoon"],
-      answer: "Hello there! How can I help you today? You can ask about my projects, skills, or contact info."
-    },
-    {
-      keywords: ["who", "about", "yourself", "kisandu", "name"],
-      answer: "I am Kisandu Wethmal, a Full Stack Developer and Undergraduate Software Engineer based in Sri Lanka."
-    },
-    {
-      keywords: ["skills", "stack", "tech", "technologies", "language", "react", "java"],
-      answer: "I work with a modern tech stack including React.js, Spring Boot, Java, Python, Node.js, and SQL. I also have experience with Cloud technologies and UI design in Figma."
-    },
-    {
-      keywords: ["project", "work", "portfolio", "app", "website", "altura", "statok"],
-      answer: "I have built several enterprise-grade projects like 'Altura Grand' (Hotel Management), 'Statok' (Finance System), and 'Pizza Mania' (Android App). Scroll up to the Projects section to see them!"
-    },
-    {
-      keywords: ["contact", "email", "phone", "hire", "reach", "gmail"],
-      answer: "You can email me at kisanduofficially@gmail.com or use the contact form on this website. I'm open to freelance work and internships!"
-    },
-    {
-        keywords: ["education", "degree", "university", "study", "college"],
-        answer: "I am currently reading for my BSc (Hons) in Software Engineering at Coventry University London. I also hold diplomas from NIBM and Esoft Metro Campus."
-    },
-    {
-        keywords: ["github", "linkedin", "social"],
-        answer: "You can find my code on GitHub and connect with me on LinkedIn. The links are in the footer!"
-    }
-  ];
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const findAnswer = (userInput) => {
-    const lowerInput = userInput.toLowerCase();
-    const match = knowledgeBase.find(item => 
-      item.keywords.some(keyword => lowerInput.includes(keyword))
-    );
-    return match ? match.answer : "I'm not sure about that. Try asking about my 'projects', 'skills', or 'contact' info!";
-  };
-
-  const handleSend = () => {
-    if (!input.trim()) return;
-    const userMessage = { text: input, sender: 'user' };
-    setMessages(prev => [...prev, userMessage]);
+  const handleOptionClick = (key) => {
+    // Add user message
+    const userDisplayMap = {
+      skills: "Tell me about your tech stack and skills.",
+      contact: "How can I contact you?",
+      education: "Where did you study?",
+      experience: "Tell me about your work experience."
+    };
     
+    setMessages(prev => [...prev, { sender: 'user', text: userDisplayMap[key] }]);
+    
+    // Simulate delay
     setTimeout(() => {
-      const botResponseText = findAnswer(input);
-      const botMessage = { text: botResponseText, sender: 'bot' };
-      setMessages(prev => [...prev, botMessage]);
+      setMessages(prev => [...prev, { sender: 'bot', text: ruleBasedResponses[key] }]);
     }, 600);
-
-    setInput('');
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') handleSend();
   };
 
   return (
     <>
-      {/* --- POP-UP GREETING BUBBLE --- */}
-      <AnimatePresence>
-        {showTooltip && !isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            className="fixed bottom-24 right-6 z-50 max-w-[200px] bg-white text-black p-4 rounded-2xl rounded-br-none shadow-xl border border-neutral-200"
-          >
-            <p className="text-sm font-medium">
-              👋 Hello! I'm Kisandu's Assistant. Ask me any question!
-            </p>
-            {/* Tiny Triangle Pointer */}
-            <div className="absolute -bottom-2 right-4 w-4 h-4 bg-white transform rotate-45"></div>
-            
-            {/* Close Button for Bubble */}
-            <button 
-                onClick={() => setShowTooltip(false)}
-                className="absolute -top-2 -left-2 bg-neutral-200 rounded-full p-1 hover:bg-neutral-300"
-            >
-                <X size={12} />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Floating Button */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={toggleChat}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg shadow-purple-500/30 text-white"
+      <button 
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
       >
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-      </motion.button>
+        <MessageSquare />
+      </button>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-50 w-80 md:w-96 h-[500px] bg-black/80 backdrop-blur-xl border border-neutral-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 lg:right-10 z-50 w-80 lg:w-96 glass bg-white shadow-2xl overflow-hidden flex flex-col rounded-xl border border-gray-100"
           >
-            {/* Header */}
-            <div className="p-4 bg-neutral-900/50 border-b border-neutral-800 flex items-center gap-3">
-              <div className="bg-purple-600 p-2 rounded-full">
-                <Sparkles size={16} className="text-white" />
+            <div className="bg-black text-white p-4 flex justify-between items-center">
+              <div className="font-bold tracking-wide flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                Kisandu's Bot
               </div>
-              <div>
-                <h3 className="font-semibold text-white text-sm">Kisandu's Assistant</h3>
-                <p className="text-xs text-green-400 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> Online
-                </p>
-              </div>
+              <button onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-white">
+                <X size={20} />
+              </button>
             </div>
 
-            {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-              {messages.map((msg, index) => (
-                <div 
-                  key={index} 
-                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-                    msg.sender === 'user' 
-                      ? 'bg-purple-600 text-white rounded-br-none' 
-                      : 'bg-neutral-800 text-neutral-200 rounded-bl-none border border-neutral-700'
-                  }`}>
+            <div className="flex-1 p-4 h-64 overflow-y-auto space-y-4 bg-gray-50 flex flex-col">
+              {messages.map((msg, i) => (
+                <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[80%] p-3 text-sm rounded-2xl ${msg.sender === 'user' ? 'bg-black text-white rounded-br-none' : 'bg-white text-black border border-gray-200 shadow-sm rounded-bl-none'}`}>
                     {msg.text}
                   </div>
                 </div>
               ))}
-              <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Area */}
-            <div className="p-4 bg-neutral-900/50 border-t border-neutral-800 flex gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Ask about projects, skills..."
-                className="flex-1 bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-purple-500 placeholder:text-neutral-600"
-              />
-              <button 
-                onClick={handleSend}
-                className="p-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white shadow-lg hover:shadow-purple-500/20 transition-all active:scale-95"
-              >
-                <Send size={18} />
+            <div className="p-4 bg-white border-t border-gray-100 flex flex-wrap gap-2">
+              <button onClick={() => handleOptionClick('skills')} className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-full font-medium transition-colors">
+                Skills Setup
+              </button>
+              <button onClick={() => handleOptionClick('experience')} className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-full font-medium transition-colors">
+                Experience
+              </button>
+              <button onClick={() => handleOptionClick('contact')} className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-full font-medium transition-colors">
+                Contact Info
               </button>
             </div>
           </motion.div>

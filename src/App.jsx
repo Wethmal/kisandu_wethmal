@@ -1,41 +1,40 @@
-import React from 'react'
-import { div, i, main } from 'motion/react-client' 
-import './App.css'
-
-
-import Tech from './components/Tech' 
-import Projects  from './components/Projects' 
-import Contact from './components/Contact'
-import My from './components/My'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Education from './components/Education'
-import Services from './components/Services'
-import Chatbot from './components/Chatbot'
+import React from 'react';
+import Navigation from './components/Navigation';
+import Hero from './components/Hero';
+import About from './components/About';
+import Skills from './components/Skills';
+import Education from './components/Education';
+import Experience from './components/Experience';
+import ContactForm from './components/ContactForm';
+import FloatingActions from './components/FloatingActions';
+import Chatbot from './components/Chatbot';
 
 function App() {
   return (
-    <div className='overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900'>
+    <div className="relative w-full">
+      <Navigation />
       
-      {/* Background Wrapper */}
-      <div className='fixed top-0 -z-10 h-full w-full'>
-        <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#0d0b16]"></div>
-      </div>
-
-      {/* Main Content */}
-      <div className='flex flex-col items-center w-full'>
-        <Navbar />
-        <My />
-        <Tech />
-        <Projects />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <div className="bg-gray-50 border-y border-gray-100">
+          <Experience />
+        </div>
         <Education />
-        <Services />
-        <Chatbot />
-        <Contact />
-        <Footer />
-      </div>
+        <div className="bg-white border-t border-gray-100 mt-20">
+          <ContactForm />
+        </div>
+      </main>
+
+      <FloatingActions />
+      <Chatbot />
+      
+      <footer className="py-8 bg-black text-white text-center text-sm tracking-widest font-bold">
+        © {new Date().getFullYear()} KISANDU WETHMAL. ALL RIGHTS RESERVED.
+      </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
