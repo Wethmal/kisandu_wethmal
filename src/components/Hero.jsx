@@ -4,23 +4,30 @@ import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20" id="hero">
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-10" id="hero">
       {/* Background Decorative Lines */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full border-[1px] border-gray-300 pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full border-[1px] border-gray-300 pointer-events-none" />
 
       {/* Massive Background Text */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-full flex justify-center items-center pointer-events-none -z-10">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-full flex flex-col justify-center items-center pointer-events-none -z-10">
         <motion.h1 
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="huge-text font-black text-black select-none whitespace-nowrap overflow-hidden px-4 block tracking-tighter"
+          className="huge-text font-black text-black select-none whitespace-nowrap px-4 block tracking-tighter py-1"
         >
-          KISANDU
+          KISANDU 
         </motion.h1>
+        <motion.h2 
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+          className="huge-text font-black text-black select-none whitespace-nowrap px-4 block tracking-tighter py-1 mt-2 md:mt-4 lg:mt-6"
+        >
+          WETHMAL
+        </motion.h2>
       </div>
-
       {/* Side Content */}
       <motion.div 
         initial={{ opacity: 0, x: -50 }}
@@ -28,8 +35,7 @@ const Hero = () => {
         transition={{ delay: 0.5, duration: 0.8 }}
         className="absolute left-[5%] xl:left-[10%] top-1/3 flex flex-col gap-2 z-10 hidden lg:block"
       >
-        <h2 className="text-xl md:text-2xl text-gray-800 font-medium font-outfit">SOFTWARE ENGINEER</h2>
-        <h3 className="text-lg text-gray-500">(APPLIED AI)</h3>
+        
       </motion.div>
 
       {/* Center Image */}
@@ -37,7 +43,7 @@ const Hero = () => {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
-        className="relative z-10 mt-10 md:mt-24 max-w-sm md:max-w-md lg:max-w-xl mx-auto"
+        className="relative z-10 mt-0 md:mt-10 lg:mt-16 max-w-sm md:max-w-md lg:max-w-xl mx-auto"
       >
         {/* Replace with your specific cropped transparent image to match the effect perfectly */}
         <img 
