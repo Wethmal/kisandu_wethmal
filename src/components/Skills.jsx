@@ -11,7 +11,7 @@ const skillsData = [
 
 const Skills = () => {
   return (
-    <section className="py-32 px-8 max-w-7xl mx-auto bg-white" id="skills">
+    <section className="py-20 md:py-32 px-4 md:px-8 max-w-7xl mx-auto bg-white" id="skills">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ const Skills = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="text-center mb-20">
-          <h2 className="text-5xl font-black uppercase tracking-tighter">My Tech Stack</h2>
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">My Tech Stack</h2>
           <p className="text-gray-500 mt-4 max-w-2xl mx-auto">Technologies and tools I have mastered to build scalable, robust, and AI-integrated applications.</p>
         </div>
 
@@ -31,7 +31,7 @@ const Skills = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="p-8 border border-gray-200 hover:border-black transition-colors duration-300 group"
+              className="p-6 md:p-8 border border-gray-200 hover:border-black transition-colors duration-300 group"
             >
               <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
                 <span className="w-8 h-8 rounded-full bg-light-bg flex items-center justify-center text-sm group-hover:bg-black group-hover:text-white transition-colors">0{idx+1}</span>

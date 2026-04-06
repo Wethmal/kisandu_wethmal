@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const ContactForm = () => {
   return (
-    <section className="py-32 px-8 max-w-4xl mx-auto" id="contact">
+    <section className="py-20 md:py-32 px-4 md:px-8 max-w-4xl mx-auto" id="contact">
       <motion.div
          initial={{ opacity: 0, y: 50 }}
          whileInView={{ opacity: 1, y: 0 }}
@@ -11,11 +11,11 @@ const ContactForm = () => {
          transition={{ duration: 0.8 }}
       >
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-black uppercase tracking-tighter">Let's Talk</h2>
-          <p className="text-gray-500 max-w-xl mx-auto mt-4 text-lg">Interested in collaborating or have a proposition? Feel free to reach out.</p>
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Let's Talk</h2>
+          <p className="text-gray-500 max-w-xl mx-auto mt-4 text-base md:text-lg">Interested in collaborating or have a proposition? Feel free to reach out.</p>
         </div>
 
-        <form className="space-y-8 bg-white p-12 shadow-sm border border-gray-100" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-6 md:space-y-8 bg-white p-6 md:p-12 shadow-sm border border-gray-100" onSubmit={(e) => e.preventDefault()}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
               <label className="text-sm font-bold tracking-widest text-gray-400 uppercase">First Name</label>

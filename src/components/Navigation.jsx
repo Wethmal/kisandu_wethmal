@@ -7,14 +7,14 @@ const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto w-full"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 py-4 md:py-6 max-w-7xl mx-auto w-full"
     >
       {/* Logo Area */}
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center text-white font-bold text-xl tracking-tighter">
+        <div className="w-10 h-10 md:w-12 md:h-12 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg md:text-xl tracking-tighter">
           KW
         </div>
-        <span className="font-outfit font-bold tracking-tight text-lg">DESIGN BY KISANDU</span>
+        <span className="font-outfit font-bold tracking-tight text-base md:text-lg">DESIGN BY KISANDU</span>
       </div>
 
       {/* Nav Links */}

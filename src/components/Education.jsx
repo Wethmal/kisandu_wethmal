@@ -30,7 +30,7 @@ const educations = [
 
 const Education = () => {
   return (
-    <section className="py-32 bg-light-bg px-8" id="education">
+    <section className="py-20 md:py-32 bg-light-bg px-4 md:px-8" id="education">
       <div className="max-w-5xl mx-auto">
         <motion.div
            initial={{ opacity: 0, y: 50 }}
@@ -39,7 +39,7 @@ const Education = () => {
            transition={{ duration: 0.8 }}
            className="text-center mb-20"
         >
-          <h2 className="text-5xl font-black uppercase tracking-tighter">Education</h2>
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Education</h2>
           <div className="w-24 h-1 bg-black mx-auto mt-6"></div>
         </motion.div>
 
@@ -51,7 +51,7 @@ const Education = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
-              className="bg-white p-10 shadow-sm border-t-4 border-transparent hover:border-black transition-all duration-300"
+              className="bg-white p-6 md:p-10 shadow-sm border-t-4 border-transparent hover:border-black transition-all duration-300"
             >
               <span className="inline-block px-3 py-1 bg-gray-100 text-sm font-bold tracking-widest text-black mb-4">
                 {item.period}

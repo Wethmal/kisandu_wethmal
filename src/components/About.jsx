@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section className="py-32 px-8 max-w-5xl mx-auto" id="about">
+    <section className="py-20 md:py-32 px-4 md:px-8 max-w-5xl mx-auto" id="about">
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -12,7 +12,7 @@ const About = () => {
         className="flex flex-col md:flex-row gap-12 items-start"
       >
         <div className="flex-1">
-          <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase tracking-tighter">About<br/>Me.</h2>
+          <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter">About<br/>Me.</h2>
           <div className="w-16 h-1 bg-black mb-8"></div>
         </div>
         

@@ -31,7 +31,7 @@ const projects = [
 
 const Experience = () => {
   return (
-    <section className="py-32 px-8 max-w-7xl mx-auto" id="projects">
+    <section className="py-20 md:py-32 px-4 md:px-8 max-w-7xl mx-auto" id="projects">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
         {/* Experience Column */}
         <motion.div
@@ -40,7 +40,7 @@ const Experience = () => {
            viewport={{ once: true }}
            transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-black uppercase tracking-tighter border-b-2 border-black pb-4 mb-10">Experience</h2>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter border-b-2 border-black pb-4 mb-8 md:mb-10">Experience</h2>
           <div className="space-y-12">
             {experiences.map((exp, idx) => (
               <div key={idx} className="relative pl-8 before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:bg-black before:rounded-full after:absolute after:left-[5px] after:top-5 after:bottom-[-2rem] after:w-[2px] after:bg-gray-200 last:after:hidden">
@@ -60,10 +60,10 @@ const Experience = () => {
            viewport={{ once: true }}
            transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-black uppercase tracking-tighter border-b-2 border-black pb-4 mb-10">Key Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter border-b-2 border-black pb-4 mb-8 md:mb-10">Key Projects</h2>
           <div className="grid grid-cols-1 gap-6">
             {projects.map((proj, idx) => (
-              <div key={idx} className="p-8 bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+              <div key={idx} className="p-6 md:p-8 bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                 <h3 className="text-xl font-bold mb-3">{proj.name}</h3>
                 <p className="text-gray-500">{proj.desc}</p>
               </div>
