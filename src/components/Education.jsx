@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const educations = [
   {
-    period: "2023 - Present",
+    period: "2024 - Present",
     degree: "BSc (Hons) Computer Science with Applied Artificial Intelligence",
     school: "Coventry University London | School of Computing",
     gpa: "Current GPA: 3.82 / 4.00"
