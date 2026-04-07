@@ -42,7 +42,9 @@ function App() {
   return (
     <div className="relative w-full">
       <CharacterCursor />
-      <Navigation />
+      <header>
+        <Navigation />
+      </header>
 
       <main>
         <Hero />

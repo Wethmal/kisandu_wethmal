@@ -16,18 +16,11 @@ const Hero = () => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="huge-text font-black text-black select-none text-center"
+          className="huge-text font-black text-black select-none text-center flex flex-col items-center"
         >
-          KISANDU
+          <span>KISANDU</span>
+          <span className="mt-2 md:mt-4">WETHMAL</span>
         </motion.h1>
-        <motion.h2
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="huge-text font-black text-black select-none text-center mt-2 md:mt-4"
-        >
-          WETHMAL
-        </motion.h2>
       </div>
 
       {/* Center Image - Static with Load Animation only */}
@@ -39,7 +32,7 @@ const Hero = () => {
       >
         <img
           src="/mypic.png"
-          alt="Kisandu Wethmal"
+          alt="Kisandu Wethmal - Software Engineering & Applied AI Undergraduate Profile Photo"
           className="w-full h-auto object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.2)] grayscale contrast-125 brightness-105 hover:grayscale-0 transition-all duration-1000"
           style={{ maxHeight: '75vh' }}
         />
