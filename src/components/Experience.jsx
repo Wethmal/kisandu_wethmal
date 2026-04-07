@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import ProjectModal from './ProjectModal';
 
 const experiences = [
   {
@@ -23,13 +24,34 @@ const experiences = [
 ];
 
 const projects = [
-  { name: "Elite Motors", desc: "Car Sales Management System With Customer WebSite. Stack: Spring Boot, React, PostgreSQL." },
-  { name: "Statok", desc: "Personal Finance Management System. Stack: Java Series, PHP, HTML, CSS." },
-  { name: "Pizza Mania", desc: "Android Mobile Application using Java, SQLite, Maps API, and Firebase." },
-  { name: "SafeRoute AI", desc: "Accident Detection/SOS Navigation Mobile App. React Native, Firebase, Maps APIs." },
+  { 
+    name: "Elite Motors", 
+    desc: "Car Sales Management System With Customer WebSite. Stack: Spring Boot, React, PostgreSQL.",
+    stack: "Spring Boot, React, PostgreSQL, Tailwind CSS",
+    images: ["/projects/elite1.png"]
+  },
+  { 
+    name: "Statok", 
+    desc: "Personal Finance Management System. Stack: Java Series, PHP, HTML, CSS.",
+    stack: "Java, PHP, MySQL, HTML5, CSS3, JavaScript",
+    images: ["/projects/statok1.png"]
+  },
+  { 
+    name: "Pizza Mania", 
+    desc: "Android Mobile Application using Java, SQLite, Maps API, and Firebase.",
+    stack: "Java (Android), SQLite, Google Maps API, Firebase",
+    images: ["/projects/pizza1.png"]
+  },
+  { 
+    name: "SafeRoute AI", 
+    desc: "Accident Detection/SOS Navigation Mobile App. React Native, Firebase, Maps APIs.",
+    stack: "React Native, Firebase, Google Maps API, AI Integration",
+    images: ["/projects/saferoute1.png"]
+  },
 ]
 
 const Experience = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
@@ -90,7 +112,8 @@ const Experience = () => {
                 key={idx} 
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, x: 5 }}
-                className="p-8 bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300 rounded-xl group"
+                onClick={() => setSelectedProject(proj)}
+                className="p-8 bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300 rounded-xl group cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="text-xl font-bold group-hover:text-violet-500 transition-colors">{proj.name}</h3>
@@ -98,13 +121,21 @@ const Experience = () => {
                     {idx + 1}
                   </div>
                 </div>
-                <p className="text-gray-500 leading-relaxed">{proj.desc}</p>
+                <p className="text-gray-500 leading-relaxed mb-4">{proj.desc}</p>
+                <div className="flex items-center text-xs font-black uppercase text-violet-500 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                  View Screenshots →
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
       </div>
+
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </section>
   );
 };
