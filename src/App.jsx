@@ -9,9 +9,12 @@ import ContactForm from './components/ContactForm';
 import FloatingActions from './components/FloatingActions';
 import Chatbot from './components/Chatbot';
 import CharacterCursor from './components/CharacterCursor';
+import useVisitorNotification from './hooks/useVisitorNotification';
 import { GithubIcon, LinkedInIcon, InstagramIcon, FacebookIcon } from './components/SocialIcons';
 
 function App() {
+  useVisitorNotification();
+  
   return (
     <div className="relative w-full">
       <CharacterCursor />
