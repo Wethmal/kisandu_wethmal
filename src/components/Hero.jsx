@@ -1,72 +1,63 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import { LinkedInIcon, GithubIcon, InstagramIcon, FacebookIcon } from './SocialIcons';
 
 const Hero = () => {
-  const socials = [
-    { icon: <LinkedInIcon size={24} />, href: "https://www.linkedin.com/in/kisandu-wethmal-9ba67633b/", label: "LinkedIn" },
-    { icon: <GithubIcon size={24} />, href: "https://github.com/Wethmal", label: "GitHub" },
-    { icon: <InstagramIcon size={24} />, href: "https://www.instagram.com/_kishu_x_?igsh=eWV4cWE2eTdqNWFr&utm_source=qr", label: "Instagram" },
-    { icon: <FacebookIcon size={24} />, href: "https://www.facebook.com/share/1DzbCzXVqy/?mibextid=wwXIfr", label: "Facebook" },
-  ];
-
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-10" id="hero">
-      {/* Background Decorative Lines */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full border-[1px] border-gray-300 pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full border-[1px] border-gray-300 pointer-events-none" />
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-10 bg-white" id="hero">
+      {/* Premium Background Elements */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/felt.png')] opacity-[0.03] pointer-events-none" />
 
       {/* Massive Background Text */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-full flex flex-col justify-center items-center pointer-events-none -z-10">
-        <motion.h1 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="huge-text font-black text-black select-none whitespace-nowrap px-4 block tracking-tighter py-1"
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col justify-center items-center pointer-events-none z-0 px-4">
+        <motion.h1
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="huge-text font-black text-black select-none text-center"
         >
-          KISANDU 
+          KISANDU
         </motion.h1>
-        <motion.h2 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-          className="huge-text font-black text-black select-none whitespace-nowrap px-4 block tracking-tighter py-1 mt-2 md:mt-4 lg:mt-6"
+        <motion.h2
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className="huge-text font-black text-black select-none text-center mt-2 md:mt-4"
         >
           WETHMAL
         </motion.h2>
       </div>
-      
 
-      {/* Center Image */}
-      <motion.div 
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
-        className="relative z-10 mt-0 md:mt-10 lg:mt-16 max-w-sm md:max-w-md lg:max-w-xl mx-auto"
+      {/* Center Image - Static with Load Animation only */}
+      <motion.div
+        initial={{ y: 80, opacity: 0, scale: 0.95 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        className="relative z-10 mt-5 md:mt-5 max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto"
       >
-        {/* Replace with your specific cropped transparent image to match the effect perfectly */}
-        <img 
-          src="/mypic.png" 
-          alt="Kisandu Wethmal" 
-          className="w-full h-auto object-contain filter drop-shadow-2xl grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-700"
-          style={{ maxHeight: '80vh' }}
+        <img
+          src="/mypic.png"
+          alt="Kisandu Wethmal"
+          className="w-full h-auto object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.2)] grayscale contrast-125 brightness-105 hover:grayscale-0 transition-all duration-1000"
+          style={{ maxHeight: '75vh' }}
         />
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 right-10 lg:right-20 flex flex-col items-center gap-4 z-20"
+      {/* Elegant Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 flex flex-col items-center gap-2 z-20"
       >
-        <span className="text-sm font-semibold tracking-wide text-gray-600">Scroll down</span>
+        <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-gray-400">Discover</span>
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         >
-          <ArrowDown size={32} className="text-black" />
+          <ArrowDown size={20} className="text-violet-500" />
         </motion.div>
       </motion.div>
 

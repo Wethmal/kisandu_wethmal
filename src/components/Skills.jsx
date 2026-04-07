@@ -10,57 +10,91 @@ const skillsData = [
 ];
 
 const Skills = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
   return (
-    <section className="relative w-full py-20 md:py-32 px-4 md:px-8 overflow-hidden flex justify-center" id="skills">
-      {/* Background Video */}
+    <section className="relative w-full py-12 md:py-32 px-6 md:px-8 overflow-hidden flex justify-center" id="skills">
+      {/* Background Video with improved contrast */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 md:opacity-100"
       >
         <source src="https://res.cloudinary.com/djud71kro/video/upload/q_auto/f_auto/v1775472580/coding_utkqr9.mp4" type="video/mp4" />
       </video>
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/80 z-0 pointer-events-none"></div>
+      {/* Dynamic Overlay */}
+      <div className="absolute inset-0 bg-black/80 md:bg-black/70 z-0 pointer-events-none"></div>
 
       <div className="max-w-7xl w-full mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 1 }}
+           className="text-center mb-16 md:mb-24"
         >
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white drop-shadow-md">My Tech Stack</h2>
-            <p className="text-gray-300 mt-4 max-w-2xl mx-auto text-shadow">Technologies and tools I have mastered to build scalable, robust, and AI-integrated applications.</p>
-          </div>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
+            Tech <span className="text-violet-500 underline decoration-white/20 underline-offset-8">Stack.</span>
+          </h2>
+          <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg md:text-xl font-light">
+            Architecting modern solutions with a diverse set of cutting-edge technologies.
+          </p>
+        </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skillsData.map((group, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="p-6 md:p-8 bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/40 hover:bg-white/10 transition-all duration-300 group text-white rounded-lg shadow-2xl"
-              >
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm group-hover:bg-violet-500 group-hover:text-white transition-colors shadow-[0_0_10px_rgba(139,92,246,0)] group-hover:shadow-[0_0_15px_rgba(139,92,246,0.8)]">0{idx + 1}</span>
-                  {group.category}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {group.skills.map(skill => (
-                    <span key={skill} className="px-4 py-2 bg-black/40 border border-white/10 text-white/90 text-sm font-medium rounded-md hover:-translate-y-1 hover:border-violet-500 hover:text-white hover:bg-violet-500/20 transition-all cursor-default shadow-sm backdrop-blur-sm">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          {skillsData.map((group, idx) => (
+            <motion.div
+              key={idx}
+              variants={cardVariants}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="p-8 bg-white/5 backdrop-blur-xl border border-white/10 hover:border-violet-500/50 hover:bg-white/10 transition-colors group rounded-2xl shadow-2xl relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              
+              <h3 className="text-xl font-bold mb-8 flex items-center gap-4 text-white">
+                <span className="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center text-xs font-black text-violet-400 group-hover:bg-violet-500 group-hover:text-white transition-all duration-500">
+                  {idx + 1}
+                </span>
+                {group.category}
+              </h3>
+
+              <div className="flex flex-wrap gap-2.5">
+                {group.skills.map(skill => (
+                  <motion.span 
+                    key={skill}
+                    whileHover={{ scale: 1.05 }}
+                    className="px-4 py-2 bg-white/5 border border-white/10 text-white/80 text-sm font-medium rounded-lg hover:text-white hover:border-violet-500/50 hover:bg-violet-500/10 transition-all cursor-default"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
