@@ -9,10 +9,10 @@ const experiences = [
     desc: "Full-Stack & AI Development: Built scalable applications using React and Spring Boot, integrating AI-driven automation to optimize government digital services."
   },
   {
-    role: "Desktop ERP System Developer",
-    company: "Vertix (Self-Employed)",
-    years: "Freelance",
-    desc: "Designed and developed an ERP system using C#, .NET, Crystal Reports, and Microsoft SQL."
+    role: "Full-Stack & Systems Developer",
+    company: "Self-Employed / Freelance",
+    years: "2023 - PRESENT",
+    desc: "End-to-End Development: Designed and deployed custom web, mobile, and system solutions for diverse clients, focusing on scalable architecture, cloud integration, and seamless user experiences across various tech stacks."
   },
   {
     role: "ICT Teacher",

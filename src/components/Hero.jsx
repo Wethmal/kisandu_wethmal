@@ -4,14 +4,14 @@ import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-10 bg-white" id="hero">
+    <section className="relative min-h-[80vh] sm:min-h-screen flex flex-col justify-center items-center overflow-hidden pt-4 sm:pt-10 bg-white" id="hero">
       {/* Premium Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/felt.png')] opacity-[0.03] pointer-events-none" />
 
       {/* Massive Background Text */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col justify-center items-center pointer-events-none z-0 px-4">
+      <div className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col justify-center items-center pointer-events-none z-0 px-4">
         <motion.h1
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -35,7 +35,7 @@ const Hero = () => {
         initial={{ y: 80, opacity: 0, scale: 0.95 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-        className="relative z-10 mt-5 md:mt-5 max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto"
+        className="relative z-10 mt-0 sm:mt-5 max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto"
       >
         <img
           src="/mypic.png"
@@ -50,7 +50,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 flex flex-col items-center gap-2 z-20"
+        className="absolute bottom-4 sm:bottom-8 flex flex-col items-center gap-2 z-20"
       >
         <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-gray-400">Discover</span>
         <motion.div
