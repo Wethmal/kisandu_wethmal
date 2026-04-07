@@ -5,6 +5,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Experience from './components/Experience';
+import Services from './components/Services';
 import ContactForm from './components/ContactForm';
 import FloatingActions from './components/FloatingActions';
 import Chatbot from './components/Chatbot';
@@ -47,6 +48,7 @@ function App() {
         <Hero />
         <About />
         <Skills />
+        <Services />
         <div className="bg-gray-50 border-y border-gray-100">
           <Experience />
         </div>

@@ -19,7 +19,7 @@ const Navigation = () => {
         <a href="#about" className="hover:text-black transition-colors">Profile</a>
 
         <a href="#skills" className="hover:text-black transition-colors">Skills</a>
-
+        <a href="#services" className="hover:text-black transition-colors">Services</a>
         <a href="#education" className="hover:text-black transition-colors">Education</a>
 
         <a href="#projects" className="hover:text-black transition-colors">Projects</a>
