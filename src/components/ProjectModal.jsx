@@ -99,9 +99,9 @@ const ProjectModal = ({ project, onClose }) => {
               <div className="text-xs font-black uppercase text-violet-500 tracking-widest">Technologes.</div>
               <p className="text-sm font-medium text-gray-700">{project.stack}</p>
               
-              <button className="w-full py-4 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-violet-600 transition-colors rounded-lg mt-4">
+              {/* <button className="w-full py-4 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-violet-600 transition-colors rounded-lg mt-4">
                 View Live Case.
-              </button>
+              </button> */}
             </div>
           </div>
         </motion.div>

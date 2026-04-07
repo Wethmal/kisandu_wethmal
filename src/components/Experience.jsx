@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ProjectModal from './ProjectModal';
+import ProjectCard from './ProjectCard';
 
 const experiences = [
   {
@@ -106,26 +107,14 @@ const Experience = () => {
             <div className="w-16 h-1 bg-black ml-auto md:ml-0"></div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-8">
             {projects.map((proj, idx) => (
-              <motion.div 
+              <ProjectCard 
                 key={idx} 
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, x: 5 }}
-                onClick={() => setSelectedProject(proj)}
-                className="p-8 bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300 rounded-xl group cursor-pointer"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-bold group-hover:text-violet-500 transition-colors">{proj.name}</h3>
-                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-[10px] font-black group-hover:bg-black group-hover:text-white transition-colors">
-                    {idx + 1}
-                  </div>
-                </div>
-                <p className="text-gray-500 leading-relaxed mb-4">{proj.desc}</p>
-                <div className="flex items-center text-xs font-black uppercase text-violet-500 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                  View Screenshots →
-                </div>
-              </motion.div>
+                project={proj} 
+                index={idx} 
+                onClick={() => setSelectedProject(proj)} 
+              />
             ))}
           </div>
         </motion.div>
