@@ -9,7 +9,8 @@ const Hero = () => {
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/felt.png')] opacity-[0.03] pointer-events-none" />
-
+      
+<meta name='impact-site-verification' value='21e8d379-edca-4746-a322-d744a51a7cb7'></meta>
       {/* Massive Background Text */}
       <div className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col justify-center items-center pointer-events-none z-0 px-4">
         <motion.h1
