@@ -38,7 +38,7 @@ const Skills = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 md:opacity-100"
       >
-        <source src="https://res.cloudinary.com/djud71kro/video/upload/q_auto/f_auto/v1775472580/coding_utkqr9.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dbgkbaioo/video/upload/v1779271878/7020031_Tunnel_Technology_1280x720_u8kabw.mp4" type="video/mp4" />
       </video>
       {/* Dynamic Overlay */}
       <div className="absolute inset-0 bg-black/80 md:bg-black/70 z-0 pointer-events-none"></div>
