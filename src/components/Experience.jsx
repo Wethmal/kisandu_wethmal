@@ -49,6 +49,18 @@ const projects = [
     stack: "React Native, Firebase, Google Maps API, AI Integration",
     images: ["/projects/saferoute1.png"]
   },
+  {
+    name: "Corporate Visa Application System",
+    desc: "A corporate visa application system where applicants apply for visas and admins manage and approve applications.",
+    stack: "React.js (Vite), TanStack Query, i18next, Node.js (Express), jsPDF, bcryptjs",
+    images: ["/projects/visa1.png"]
+  },
+  {
+    name: "Document & Task Management System",
+    desc: "A centralized document and task management platform with secure file handling, workflow automation, and reporting.",
+    stack: "React.js (Vite), Node.js (Express), ExcelJS, PDFKit, bcryptjs",
+    images: ["/projects/docmgmt1.png"]
+  }
 ]
 
 const Experience = () => {
