@@ -49,9 +49,9 @@ const Chatbot = () => {
       education: "Where did you study?",
       experience: "Tell me about your work experience."
     };
-    
+
     setMessages(prev => [...prev, { sender: 'user', text: userDisplayMap[key] }]);
-    
+
     setTimeout(() => {
       setMessages(prev => [...prev, { sender: 'bot', text: ruleBasedResponses[key] }]);
     }, 600);
@@ -69,7 +69,7 @@ const Chatbot = () => {
     setTimeout(() => {
       let responseKey = 'default';
       const lowerInput = userMessage.toLowerCase();
-      
+
       if (lowerInput.includes('kisandu') && (lowerInput.includes('assist') || lowerInput.includes('help') || lowerInput.includes('service') || lowerInput.includes('work'))) {
         responseKey = 'assistance';
       } else if (lowerInput.includes('assist') || lowerInput.includes('help') || lowerInput.includes('service') || lowerInput.includes('what can you do')) {
@@ -104,13 +104,13 @@ const Chatbot = () => {
           className="fixed bottom-24 right-6 lg:bottom-28 lg:right-10 z-[100] bg-black text-white text-[11px] px-3.5 py-2 rounded-xl shadow-2xl border border-gray-800 flex items-center gap-1.5 pointer-events-none whitespace-nowrap font-medium tracking-wide uppercase"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
-          hello ai kishu ai
+          Ask Anything
           {/* Subtle Speech Bubble Arrow */}
           <div className="absolute bottom-[-5px] right-6 w-2.5 h-2.5 bg-black border-r border-b border-gray-800 rotate-45"></div>
         </motion.div>
       )}
 
-      <motion.button 
+      <motion.button
         variants={{
           visible: { opacity: 1, y: 0, scale: 1 },
           hidden: { opacity: 0, y: 50, scale: 0.8 }
@@ -130,7 +130,7 @@ const Chatbot = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -158,7 +158,7 @@ const Chatbot = () => {
                   {msg.sender === 'bot' && (
                     <img src="/robo-avatar.png" alt="Bot Avatar" className="w-7 h-7 rounded-full object-cover shrink-0 border border-gray-200 shadow-sm" />
                   )}
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.9, originY: 1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className={`max-w-[78%] p-3 text-sm rounded-2xl whitespace-pre-line ${msg.sender === 'user' ? 'bg-black text-white rounded-br-none' : 'bg-white text-black border border-gray-200 shadow-sm rounded-bl-none'}`}
@@ -199,9 +199,9 @@ const Chatbot = () => {
                 placeholder="Type a message..."
                 className="flex-1 bg-gray-100 text-sm rounded-full px-4 py-2 outline-none focus:ring-2 focus:ring-black/5 transition-all"
               />
-              <button 
-                type="submit" 
-                disabled={!inputText.trim()} 
+              <button
+                type="submit"
+                disabled={!inputText.trim()}
                 className="w-10 h-10 bg-black text-white rounded-full flex justify-center items-center shrink-0 disabled:opacity-50 transition-opacity"
               >
                 <Send size={16} className={inputText.trim() ? "ml-[-2px]" : ""} />
