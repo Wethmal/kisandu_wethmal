@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectModal from './ProjectModal';
 import ProjectCard from './ProjectCard';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
@@ -65,79 +69,116 @@ const projects = [
 
 const Experience = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-  };
+  const timelineRef = useRef(null);
+  const lineRef = useRef(null);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate central timeline line
+      if (lineRef.current) {
+        gsap.fromTo(lineRef.current,
+          { height: "0%" },
+          {
+            height: "100%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: "top 60%",
+              end: "bottom 80%",
+              scrub: true,
+            }
+          }
+        );
+      }
+
+      // Animate timeline cards
+      gsap.utils.toArray(".timeline-card").forEach((card, i) => {
+        gsap.from(card, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+          }
+        });
+      });
+    }, timelineRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="py-12 md:py-32 px-6 md:px-8 max-w-7xl mx-auto" id="projects">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
-        
-        {/* Experience Column */}
-        <motion.div
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true, margin: "-100px" }}
-           variants={containerVariants}
-        >
-          <div className="mb-10 md:mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Experience.</h2>
-            <div className="w-16 h-1 bg-violet-500"></div>
+    <div className="w-full flex flex-col items-center">
+      {/* EXPERIENCE SECTION */}
+      <section className="py-24 md:py-32 px-6 max-w-5xl mx-auto w-full z-10" id="experience">
+        <div className="text-center mb-16 md:mb-24">
+          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-black">
+            Experience.
+          </h2>
+          <div className="w-16 h-1 bg-violet-500 rounded-full mx-auto mt-6"></div>
+        </div>
+
+        <div ref={timelineRef} className="relative w-full">
+          {/* Animated Progress Line */}
+          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gray-100 -translate-x-1/2 rounded-full">
+            <div ref={lineRef} className="w-full bg-violet-500 rounded-full" style={{ height: '0%' }}></div>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-12 md:space-y-24">
             {experiences.map((exp, idx) => (
-              <motion.div 
-                key={idx} 
-                variants={itemVariants}
-                className="relative pl-8 before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:bg-violet-500 before:rounded-full after:absolute after:left-[5px] after:top-5 after:bottom-[-3rem] after:w-[1px] after:bg-gray-200 last:after:hidden group"
-              >
-                <span className="text-xs font-black text-violet-500 tracking-[0.2em] mb-2 block">{exp.years}</span>
-                <h3 className="text-2xl font-bold group-hover:text-violet-600 transition-colors">{exp.role}</h3>
-                <h4 className="text-lg font-medium text-gray-500 mb-4">{exp.company}</h4>
-                <p className="text-gray-600 leading-relaxed max-w-md">{exp.desc}</p>
-              </motion.div>
+              <div key={idx} className={`timeline-card relative flex flex-col md:flex-row items-start ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                
+                {/* Timeline Dot */}
+                <div className="absolute left-[20px] md:left-1/2 top-8 w-4 h-4 bg-white border-4 border-violet-500 rounded-full -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(139,92,246,0.4)]"></div>
+
+                {/* Content Card */}
+                <div className="w-full md:w-1/2 pl-12 md:pl-0">
+                  <div className={`md:px-12 ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+                    <div className="minimal-card p-8 rounded-3xl bg-white relative group">
+                      {/* Hover subtle glow */}
+                      <div className="absolute inset-0 bg-violet-500/0 group-hover:bg-violet-500/5 transition-colors duration-500 rounded-3xl pointer-events-none" />
+                      
+                      <span className="text-xs font-black text-violet-500 tracking-[0.2em] mb-3 block">{exp.years}</span>
+                      <h3 className="text-2xl font-bold text-black mb-1">{exp.role}</h3>
+                      <h4 className="text-lg font-semibold text-gray-500 mb-4">{exp.company}</h4>
+                      <p className="text-gray-600 leading-relaxed font-light">{exp.desc}</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </section>
 
-        {/* Projects Column */}
-        <motion.div
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true, margin: "-100px" }}
-           variants={containerVariants}
-        >
-          <div className="mb-10 md:mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-right md:text-left">Key Projects.</h2>
-            <div className="w-16 h-1 bg-black ml-auto md:ml-0"></div>
-          </div>
+      {/* PROJECTS SECTION */}
+      <section className="py-24 md:py-32 px-6 max-w-7xl mx-auto w-full z-10 bg-white border-t border-gray-100" id="projects">
+        <div className="text-center mb-16 md:mb-24">
+          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-black">
+            Selected <span className="text-gray-300">Works.</span>
+          </h2>
+          <div className="w-16 h-1 bg-violet-500 rounded-full mx-auto mt-6"></div>
+        </div>
 
-          <div className="grid grid-cols-1 gap-8">
-            {projects.map((proj, idx) => (
-              <ProjectCard 
-                key={idx} 
-                project={proj} 
-                index={idx} 
-                onClick={() => setSelectedProject(proj)} 
-              />
-            ))}
-          </div>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12">
+          {projects.map((proj, idx) => (
+            <ProjectCard 
+              key={idx} 
+              project={proj} 
+              index={idx} 
+              onClick={() => setSelectedProject(proj)} 
+            />
+          ))}
+        </div>
 
-      </div>
-
-      <ProjectModal 
-        project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
-      />
-    </section>
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />
+      </section>
+    </div>
   );
 };
 
