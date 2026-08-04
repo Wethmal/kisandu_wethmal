@@ -1,24 +1,23 @@
-import React, { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const containerRef = useRef(null);
-  const textRef = useRef(null);
-  const imageRef = useRef(null);
 
-  useEffect(() => {
-    // Removed GSAP parallax effect because Framer Motion's active transform management 
-    // conflicts with GSAP on scroll, causing the text and image to split apart.
-    // By letting them scroll naturally, they stay perfectly aligned.
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const textScale = useTransform(scrollYProgress, [0, 1], [1, 8]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-[80vh] sm:min-h-screen flex flex-col justify-center items-center overflow-hidden bg-white" id="hero">
+    <section ref={containerRef} className="relative w-full h-[150vh]" id="hero">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-white">
       {/* Premium Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full border-[1px] border-violet-100 pointer-events-none opacity-50" />
@@ -27,7 +26,10 @@ const Hero = () => {
       <meta name='impact-site-verification' value='21e8d379-edca-4746-a322-d744a51a7cb7'></meta>
       
       {/* Massive Background Text */}
-      <div ref={textRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col justify-center items-center pointer-events-none z-0 px-4">
+      <motion.div 
+        style={{ scale: textScale, opacity: textOpacity }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col justify-center items-center pointer-events-none z-0 px-4"
+      >
         <motion.h1
           initial={{ y: 80, opacity: 0, filter: 'blur(10px)' }}
           animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
@@ -37,17 +39,17 @@ const Hero = () => {
           <span>KISANDU</span>
           <span>WETHMAL</span>
         </motion.h1>
-      </div>
+      </motion.div>
 
-      {/* Center Image - Static with Load Animation only */}
+      {/* Center Image */}
       <motion.div
-        ref={imageRef}
-        initial={{ y: 80, opacity: 0, scale: 0.95 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        style={{ scale: imageScale, y: imageY }}
         className="relative z-10 w-[80%] max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-[550px] mx-auto translate-x-[4%]"
       >
-        <img
+        <motion.img
+          initial={{ y: 80, opacity: 0, scale: 0.95 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
           src="/mypic.png"
           alt="Kisandu Wethmal - Software Engineering & Applied AI Undergraduate Profile Photo"
           className="w-full h-auto object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.2)] grayscale contrast-125 brightness-105 hover:grayscale-0 transition-all duration-1000 cursor-pointer"
@@ -71,6 +73,7 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
+      </div>
     </section>
   );
 };

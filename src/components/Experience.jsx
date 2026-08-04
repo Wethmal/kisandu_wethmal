@@ -90,20 +90,6 @@ const Experience = () => {
           }
         );
       }
-
-      // Animate timeline cards
-      gsap.utils.toArray(".timeline-card").forEach((card, i) => {
-        gsap.from(card, {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-          }
-        });
-      });
     }, timelineRef);
     return () => ctx.revert();
   }, []);
@@ -127,7 +113,14 @@ const Experience = () => {
 
           <div className="space-y-12 md:space-y-24">
             {experiences.map((exp, idx) => (
-              <div key={idx} className={`timeline-card relative flex flex-col md:flex-row items-start ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+              <motion.div 
+                key={idx} 
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
+                className={`timeline-card relative flex flex-col md:flex-row items-start ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+              >
                 
                 {/* Timeline Dot */}
                 <div className="absolute left-[20px] md:left-1/2 top-8 w-4 h-4 bg-white border-4 border-violet-500 rounded-full -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(139,92,246,0.4)]"></div>
@@ -147,7 +140,7 @@ const Experience = () => {
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

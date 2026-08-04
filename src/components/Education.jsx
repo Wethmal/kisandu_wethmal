@@ -40,33 +40,7 @@ const educations = [
 const Education = () => {
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".edu-card", {
-        y: 40,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        }
-      });
-      
-      gsap.from(".edu-line", {
-        scaleY: 0,
-        transformOrigin: "top",
-        duration: 1.5,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 70%",
-        }
-      });
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
+  // Replaced GSAP with Framer Motion for scroll animations
 
   return (
     <section ref={containerRef} className="relative w-full py-24 md:py-32 px-6 overflow-hidden flex justify-center bg-gray-50 border-t border-gray-100" id="education">
@@ -80,11 +54,25 @@ const Education = () => {
 
         <div className="relative">
           {/* Vertical Line */}
-          <div className="edu-line absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-gray-200 rounded-full" />
+          <motion.div 
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            style={{ originY: 0 }}
+            className="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-gray-200 rounded-full" 
+          />
 
           <div className="space-y-12">
             {educations.map((item, idx) => (
-              <div key={idx} className="edu-card relative flex items-start pl-16 md:pl-28 group">
+              <motion.div 
+                key={idx} 
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: idx * 0.15, type: "spring", stiffness: 80, damping: 15 }}
+                className="edu-card relative flex items-start pl-16 md:pl-28 group"
+              >
                 {/* Timeline Icon */}
                 <div className="absolute left-6 md:left-12 top-0 -translate-x-1/2 w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center group-hover:border-violet-500 group-hover:bg-violet-50 transition-colors duration-300 z-10">
                   <GraduationCap className="w-5 h-5 text-gray-400 group-hover:text-violet-600 transition-colors" />
@@ -129,7 +117,7 @@ const Education = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

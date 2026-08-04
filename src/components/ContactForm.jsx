@@ -3,31 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+// Replaced GSAP with Framer Motion
 
 const ContactForm = () => {
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(containerRef.current, {
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        }
-      });
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
 
   const sendTelegramNotification = async (data) => {
     const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
@@ -97,7 +77,14 @@ ${data.message}
   };
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 px-6 max-w-4xl mx-auto w-full z-10 bg-white" id="contact">
+    <motion.section 
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, type: "spring", stiffness: 80, damping: 20 }}
+      className="py-24 md:py-32 px-6 max-w-4xl mx-auto w-full z-10 bg-white" 
+      id="contact"
+    >
       <div className="text-center mb-16 md:mb-20">
         <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-black">
           Let's <span className="text-gray-300">Talk.</span>
@@ -220,7 +207,7 @@ ${data.message}
           )}
         </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
