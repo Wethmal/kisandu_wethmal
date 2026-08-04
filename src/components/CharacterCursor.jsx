@@ -67,7 +67,7 @@ const CharacterCursor = () => {
   }
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden hidden md:block mix-blend-difference">
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden hidden md:block">
       <AnimatePresence>
         {particles.map((p) => (
           <motion.div
@@ -81,7 +81,7 @@ const CharacterCursor = () => {
               rotate: Math.random() * 180 - 90
             }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="absolute text-white font-bold"
+            className="absolute text-violet-400 font-bold"
             style={{ 
               fontSize: '1.2rem',
               left: '-0.6rem',
@@ -95,7 +95,7 @@ const CharacterCursor = () => {
       
       {/* Main Cursor Core */}
       <motion.div 
-        className="absolute top-0 left-0 w-3 h-3 bg-white rounded-full pointer-events-none"
+        className="absolute top-0 left-0 w-3 h-3 bg-violet-500 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.5)] pointer-events-none"
         style={{
           x: cursorX,
           y: cursorY,

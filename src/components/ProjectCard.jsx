@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const ProjectCard = ({ project, index, onClick }) => {
   const cardRef = useRef(null);
@@ -57,7 +57,7 @@ const ProjectCard = ({ project, index, onClick }) => {
           </div>
           <div className="flex gap-2">
             <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-violet-50 hover:text-violet-600 transition-colors">
-              <Github size={18} />
+              <i className="devicon-github-original text-[18px]"></i>
             </button>
             <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-violet-50 hover:text-violet-600 transition-colors">
               <ExternalLink size={18} />

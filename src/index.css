@@ -40,6 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Premium Typography utilities */
 .huge-text {
+  font-family: var(--font-outfit);
   font-size: clamp(4rem, 15vw, 18rem);
   line-height: 0.85;
   letter-spacing: -0.06em;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 const ProjectModal = ({ project, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -120,7 +120,7 @@ const ProjectModal = ({ project, onClose }) => {
                  Live Demo
                </button>
                <button className="w-full py-4 bg-gray-50 text-black border border-gray-200 font-bold tracking-wide rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors">
-                 <Github size={18} />
+                 <i className="devicon-github-original text-lg"></i>
                  View Source
                </button>
             </div>
