@@ -120,7 +120,7 @@ const About = () => {
         <motion.div className="flex-[1.5] w-full flex flex-col justify-center space-y-10 md:space-y-12">
           
           <WordReveal 
-            text="I am a Software Engineering & Applied AI undergraduate, focused on building highly scalable ecosystems and intelligent digital products." 
+            text="I am a Software Engineer & Applied AI Developer, focused on building highly scalable ecosystems and intelligent digital products." 
             className="text-2xl md:text-4xl lg:text-5xl font-medium text-gray-900 leading-tight tracking-tight"
           />
           

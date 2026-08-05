@@ -51,7 +51,7 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
           src="/mypic.png"
-          alt="Kisandu Wethmal - Software Engineering & Applied AI Undergraduate Profile Photo"
+          alt="Kisandu Wethmal - Software Engineer Profile Photo"
           className="w-full h-auto object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.2)] grayscale contrast-125 brightness-105 hover:grayscale-0 transition-all duration-1000 cursor-pointer"
           style={{ maxHeight: '75vh' }}
         />
