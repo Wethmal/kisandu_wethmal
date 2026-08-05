@@ -97,18 +97,26 @@ const Education = () => {
 
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                       {/* Animated progress circle indicator (css only for now) */}
-                       <div className="w-12 h-12 rounded-full border-[3px] border-gray-100 flex items-center justify-center relative">
-                         <svg className="absolute inset-0 w-full h-full -rotate-90">
+                       {/* Animated progress circle indicator */}
+                       <div className="w-12 h-12 relative flex items-center justify-center">
+                         <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 48 48">
+                           {/* Background Track */}
                            <circle 
-                             cx="24" cy="24" r="21" 
+                             cx="24" cy="24" r="22" 
+                             fill="none" 
+                             stroke="#f3f4f6" 
+                             strokeWidth="4" 
+                           />
+                           {/* Progress Track */}
+                           <circle 
+                             cx="24" cy="24" r="22" 
                              fill="none" 
                              stroke="currentColor" 
-                             strokeWidth="3" 
-                             className="text-violet-500 opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-out stroke-dasharray-[132] stroke-dashoffset-[132] group-hover:stroke-dashoffset-[0]" 
+                             strokeWidth="4" 
+                             className="text-violet-500 opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-out [stroke-dasharray:138] [stroke-dashoffset:138] group-hover:[stroke-dashoffset:0]" 
                            />
                          </svg>
-                         <span className="text-[10px] font-black text-gray-600">GPA</span>
+                         <span className="text-[10px] font-black text-gray-600 relative z-10">GPA</span>
                        </div>
                        <div className="flex flex-col">
                          <span className="text-xl font-bold text-black leading-none">{item.gpa}</span>
